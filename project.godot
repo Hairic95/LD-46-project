@@ -15,8 +15,13 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Ld- 46- Project"
+config/name="The Flame"
+run/main_scene="res://Src/Scenes/GameScene.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=960
 
 [rendering]
 

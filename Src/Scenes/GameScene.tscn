@@ -26,27 +26,27 @@ scale = Vector2( 0.3, 0.3 )
 position = Vector2( 128, 464 )
 
 [node name="Character" parent="Characters/Pos1" instance=ExtResource( 3 )]
-scale = Vector2( -0.3, 0.3 )
+scale = Vector2( -0.25, 0.25 )
 
 [node name="Pos2" type="Position2D" parent="Characters"]
 position = Vector2( 288, 456 )
 
 [node name="Character" parent="Characters/Pos2" instance=ExtResource( 3 )]
-scale = Vector2( -0.3, 0.3 )
+scale = Vector2( -0.25, 0.25 )
 character_name = "Roxie"
 
 [node name="Pos3" type="Position2D" parent="Characters"]
-position = Vector2( 680, 456 )
+position = Vector2( 656, 456 )
 
 [node name="Character" parent="Characters/Pos3" instance=ExtResource( 3 )]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.25, 0.25 )
 character_name = "Tatiana"
 
 [node name="Pos4" type="Position2D" parent="Characters"]
-position = Vector2( 816, 464 )
+position = Vector2( 824, 464 )
 
 [node name="Character" parent="Characters/Pos4" instance=ExtResource( 3 )]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.25, 0.25 )
 character_name = "Gio"
 
 [node name="Area2D" type="Area2D" parent="." groups=[

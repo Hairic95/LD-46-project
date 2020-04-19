@@ -55,7 +55,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "fade-in-text"
 length = 0.5
 step = 0.01
@@ -86,8 +86,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "fade-out"
+[sub_resource type="Animation" id=4]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Background:modulate")
@@ -131,7 +130,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "fade-out-text"
 length = 0.5
 step = 0.01
@@ -148,8 +147,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "fade-switch-text"
+[sub_resource type="Animation" id=6]
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
@@ -211,7 +209,7 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fade-in = SubResource( 2 )
-anims/fade-in-text = SubResource( 4 )
-anims/fade-out = SubResource( 3 )
-anims/fade-out-text = SubResource( 6 )
-anims/fade-switch-text = SubResource( 5 )
+anims/fade-in-text = SubResource( 3 )
+anims/fade-out = SubResource( 4 )
+anims/fade-out-text = SubResource( 5 )
+anims/fade-switch-text = SubResource( 6 )

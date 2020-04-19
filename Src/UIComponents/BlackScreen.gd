@@ -17,6 +17,7 @@ var current_entity_name : String
 var current_text_entites
 var current_text_entity
 var current_timer = 0.0
+var current_character_name = "Bob"
 
 # Signal when the fade-in/-out starts
 signal on_background_fade_in
@@ -34,8 +35,9 @@ signal on_text_changed
 
 # MAIN FUNCTION FOR DISPLAYING TEXT
 # Displays the black-screen with text from the entity by entity_name
-func fade_in_screen(entity_name):
+func fade_in_screen(entity_name, character_name = ""):
 	set_text_entity(entity_name)
+	current_character_name = character_name;
 	handle_background_visibility(true)
 
 func _process(delta):
@@ -75,4 +77,8 @@ func set_next_text(is_initial = false):
 
 func display_text_entity():
 	current_timer = current_text_entity.time
-	$Background/TextBox.bbcode_text = "[center]" + current_text_entity.text + "[/center]"
+	var text_to_set = current_text_entity.text
+	print(current_character_name)
+	text_to_set = text_to_set.replace("%", current_character_name)
+	print(text_to_set)
+	$Background/TextBox.bbcode_text = "[center]" + text_to_set + "[/center]"

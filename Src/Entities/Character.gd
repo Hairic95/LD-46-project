@@ -58,6 +58,7 @@ func _on_CheckArea_area_entered(area):
 		is_on_fire = true
 	if area.is_in_group("Forest"):
 		is_on_forest = true
+		BlackScreen.fade_in_screen("WOOD1", character_name)
 	print(area.get_groups())
 
 

@@ -22,7 +22,8 @@ func on_character_on_fire(character):
 	current_drag_character = character
 	
 func on_character_on_forest(character):
-	BlackScreen.fade_in_screen("WOOD1", [character.character_name])
+	randomize()
+	BlackScreen.fade_in_screen("WOOD" + str(randi()%11+1), [character.character_name])
 	print(character.character_name + " on forest")
 	current_drag_character = character
 	

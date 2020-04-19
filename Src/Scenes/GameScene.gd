@@ -33,6 +33,8 @@ func on_before_background_invisible():
 		
 	elif "WOOD" in BlackScreen.current_entity_name:
 		print("reset after forest")
+		# TODO: add logic for wood collect probability
+		GLOBALS.emit_signal("on_collect_wood", current_drag_character, 1)
 	
 	reset_characters()
 		

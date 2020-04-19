@@ -17,8 +17,14 @@ signal is_sent_on_forest(self_instance)
 
 func _ready():
 	$Sprite.material = $Sprite.material.duplicate(true)
-	$Sprite.texture = load(str("res://Textures/char_idle_", character_name.to_lower(), ".png"))
+	set_sprite(false)
 
+func set_sprite(is_dragging):
+	if is_dragging:
+		$Sprite.texture = load(str("res://Textures/char_dragged_", character_name.to_lower(), ".png"))
+	else:
+		$Sprite.texture = load(str("res://Textures/char_idle_", character_name.to_lower(), ".png"))
+		
 func _physics_process(delta):
 		
 	if can_be_dragged:
@@ -39,6 +45,7 @@ func _input(ev):
 					is_being_dragged = true
 					emit_signal("is_being_dragged", self, true)
 					$AnimationPlayer.play("on_start_drag")
+					set_sprite(true)
 				else:
 					is_being_dragged = false
 					if is_on_fire:
@@ -48,6 +55,7 @@ func _input(ev):
 					if !is_on_fire and !is_on_forest:
 						return_to_start_pos()
 					emit_signal("is_being_dragged", self, false)
+					set_sprite(false)
 
 func _on_MouseArea_mouse_entered():
 	is_mouse_over = true

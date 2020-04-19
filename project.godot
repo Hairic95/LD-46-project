@@ -16,8 +16,19 @@ _global_script_class_icons={
 [application]
 
 config/name="Ld- 46- Project"
-run/main_scene="res://Src/UIComponents/BlackScreen.tscn"
+run/main_scene="res://Src/Scenes/MAIN_MENU.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GLOBALS="*res://Src/Autoloads/GLOBALS.gd"
+TEXT="*res://Src/Autoloads/TEXT.gd"
+BlackScreen="*res://Src/UIComponents/BlackScreen.tscn"
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [rendering]
 

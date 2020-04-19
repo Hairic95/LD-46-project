@@ -1,0 +1,4 @@
+{
+    "_COMMENT_": "Stores all text. Format: text;time|next_text;next_time",
+    "INTRO": "This is the intro text - edited in game_text_en.json;4.0|This is the next text;3.0|This is third and last text;4.0"
+}

@@ -1,16 +1,17 @@
 extends Node2D
 
+var fire_hp = 4
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+func update_fire(new_hp):
+	fire_hp = new_hp
+	$FIRE.scale = Vector2(new_hp * 0.25, new_hp * 0.25)
+	
+	if fire_hp <= 0.0:
+		# TODO: extinguish effect
+		# TODO: darkness
+		
+		# game over
+		GLOBALS.emit_signal("game_over")
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	$Sprite/Anim.play("Fire")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	$FIRE/Sprite/Anim.play("Fire")

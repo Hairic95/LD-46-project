@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Textures/bg_behind_tree.png" type="Texture" id=1]
+[ext_resource path="res://Src/Scenes/tree_shake.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "shake"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("bg_behind_tree:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -3.93531, 1.14762, -3.93531 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("bg_behind_tree:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -11.0803, -1.10803 ), Vector2( 1.10797, -5.54016 ), Vector2( -11.0803, -1.10803 ) ]
+}
+
+[node name="bg_behind_tree" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/shake = SubResource( 1 )
+
+[node name="bg_behind_tree" type="Sprite" parent="."]
+position = Vector2( -11.0803, -1.10803 )
+rotation = -0.0686841
+scale = Vector2( 0.29146, 0.31499 )
+texture = ExtResource( 1 )

@@ -16,7 +16,6 @@ _global_script_class_icons={
 [application]
 
 config/name="Ld- 46- Project"
-run/main_scene="res://Src/Scenes/MAIN_MENU.tscn"
 config/icon="res://icon.png"
 
 [autoload]

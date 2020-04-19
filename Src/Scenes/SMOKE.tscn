@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise_texture;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb += texture(noise_texture, UV + TIME / 20.0).rgb * 0.1;
+}"
+
+[sub_resource type="OpenSimplexNoise" id=9]
+octaves = 4
+period = 12.9
+persistence = 0.347
+lacunarity = 3.43
+
+[sub_resource type="NoiseTexture" id=10]
+width = 128
+height = 128
+seamless = true
+noise = SubResource( 9 )
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/noise_texture = SubResource( 10 )
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.00639659, 0.398721, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.0618337, 0.0618337, 0.0618337, 0.938166, 0.192157, 0.192157, 0.192157, 0.592157, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[node name="SMOKE" type="Sprite"]
+material = SubResource( 6 )
+position = Vector2( 509.822, 336.547 )
+rotation = -1.57079
+scale = Vector2( 0.211918, 1073.02 )
+texture = SubResource( 8 )

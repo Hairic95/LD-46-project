@@ -16,13 +16,15 @@ signal is_put_on_fire(self_instance)
 signal is_sent_on_forest(self_instance)
 
 func _ready():
+	$Sprite.material = $Sprite.material.duplicate(true)
 	$Sprite.texture = load(str("res://Textures/char_idle_", character_name.to_lower(), ".png"))
 
 func _physics_process(delta):
+		
 	if can_be_dragged:
 		if is_being_dragged and global_position != get_global_mouse_position():
 			if get_tree().get_root().get_visible_rect().has_point(get_global_mouse_position()):
-				global_position = get_global_mouse_position()
+				global_position = lerp(global_position, get_global_mouse_position(), 15.0 * delta)
 			else:
 				return_to_start_pos()
 				is_being_dragged = false
@@ -36,6 +38,7 @@ func _input(ev):
 					$Tween.stop(self)
 					is_being_dragged = true
 					emit_signal("is_being_dragged", self, true)
+					$AnimationPlayer.play("on_start_drag")
 				else:
 					is_being_dragged = false
 					if is_on_fire:
@@ -58,17 +61,19 @@ func _on_CheckArea_area_entered(area):
 		is_on_fire = true
 	if area.is_in_group("Forest"):
 		is_on_forest = true
-		BlackScreen.fade_in_screen("WOOD1", character_name)
-	print(area.get_groups())
-
 
 func _on_CheckArea_area_exited(area):
 	if area.is_in_group("Campfire"):
 		is_on_fire = false
 	if area.is_in_group("Forest"):
 		is_on_forest = false
-	print(area.get_groups())
 
 func return_to_start_pos():
-	$Tween.interpolate_property(self, "position", get_position(), Vector2(0, 0), 0.4, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.interpolate_property(self, "position", get_position(), Vector2(0, 0), 2.0, Tween.TRANS_SINE, Tween.EASE_IN)
 	$Tween.start()
+
+func show_overlay_color(show):
+	if show:
+		$Sprite.material.set_shader_param("overlay_color", Color(100.0, 100.0, 100.0, 1.0))
+	else:
+		$Sprite.material.set_shader_param("overlay_color", Color(1.0, 1.0, 1.0, 1.0))

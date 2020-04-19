@@ -1,5 +1,6 @@
 {
     "_COMMENT_": "Stores all text. Format: text;time|next_text;next_time",
     "INTRO": "Intro goes here.;3.0",
-	"WOOD1": "% goes out into the woods in search of firewood.;3.0|They walk and walk and walk and walk and walk and walk and walk and walk…;3.0"
+    "WOOD1": "{0}, {1} and {2} go out into the woods in search of firewood.;3.0|They walk and walk and walk and walk and walk and walk and walk and walk…;3.0",
+    "FIRE1": "{0} is on fire, aaa!!"
 }

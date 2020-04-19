@@ -1,10 +1,10 @@
-extends Node
+extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#These are for testing. Remove once implemented in the game loop.
 	set_story_text("Test")
-	handle_background_visibility(true)
+	handle_background_visibility(false)
 	
 func handle_background_visibility(backgroundVisible):
 	if(backgroundVisible):

@@ -47,7 +47,6 @@ func on_character_on_fire(character):
 	GLOBALS.emit_signal("on_sacrifice", current_drag_character)
 	update_character_count(-1)
 	GLOBALS.can_control = false
-	$CanControlTimer.start()
 	#GLOBALS.emit_signal("on_round_end")
 
 func on_character_on_forest(character):

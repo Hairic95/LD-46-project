@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Textures/wood.png" type="Texture" id=1]
 [ext_resource path="res://Src/Entities/Campfire.tscn" type="PackedScene" id=2]
@@ -14,20 +14,20 @@
 [ext_resource path="res://Src/Scenes/tree_shake.gd" type="Script" id=12]
 [ext_resource path="res://Src/Scenes/SMOKE.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Fonts/HWYGOTH.TTF" type="DynamicFontData" id=14]
-[ext_resource path="res://Music/gameplay_music_loop.wav" type="AudioStream" id=15]
+[ext_resource path="res://Music/gameplay_music_loop.ogg" type="AudioStream" id=15]
+[ext_resource path="res://SoundEffects/night_ambiance_loop.ogg" type="AudioStream" id=16]
 
-[sub_resource type="Shader" id=11]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 void fragment() {
 	COLOR = texture(TEXTURE, UV) * vec4(vec3(sin(TIME * 0.25) + 3.0) * 0.3, 1.0);
 }"
 
-[sub_resource type="ShaderMaterial" id=12]
-shader = SubResource( 11 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "shake"
+[sub_resource type="Animation" id=3]
 length = 4.0
 loop = true
 tracks/0/type = "value"
@@ -55,8 +55,7 @@ tracks/1/keys = {
 "values": [ -2.75223, 1.74626, -2.75223 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "shake"
+[sub_resource type="Animation" id=4]
 length = 4.0
 loop = true
 tracks/0/type = "value"
@@ -84,8 +83,7 @@ tracks/1/keys = {
 "values": [ 2.80328, -1.62661, 2.80328 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "shake"
+[sub_resource type="Animation" id=5]
 length = 4.0
 loop = true
 tracks/0/type = "value"
@@ -113,10 +111,10 @@ tracks/1/keys = {
 "values": [ -3.8321, 2.38664, -3.8321 ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 456, 120 )
 
-[sub_resource type="GDScript" id=14]
+[sub_resource type="GDScript" id=7]
 script/source = "extends Area2D
 
 var wood_amount = 2
@@ -147,10 +145,10 @@ func on_collect_wood(character, amount):
 	$Tween.start()
 "
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 52, 66 )
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=9]
 resource_name = "show_amount"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Label:modulate")
@@ -177,7 +175,7 @@ tracks/1/keys = {
 "values": [ Vector2( -32.5802, -76.3064 ), Vector2( -30.8655, -122.605 ), Vector2( -30.8655, -122.605 ), Vector2( -29.1508, -96.8834 ) ]
 }
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=10]
 size = 50
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
@@ -189,7 +187,7 @@ script = ExtResource( 4 )
 [node name="Background" type="Node2D" parent="."]
 
 [node name="bg_sky" type="Sprite" parent="Background"]
-material = SubResource( 12 )
+material = SubResource( 2 )
 position = Vector2( 513.264, 304.478 )
 scale = Vector2( 0.309766, 0.297761 )
 texture = ExtResource( 8 )
@@ -236,7 +234,7 @@ texture = ExtResource( 11 )
 script = ExtResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/bg_tree_1"]
-anims/shake = SubResource( 1 )
+anims/shake = SubResource( 3 )
 
 [node name="bg_tree_3" type="Sprite" parent="Background"]
 position = Vector2( 514.371, 243.537 )
@@ -246,7 +244,7 @@ texture = ExtResource( 10 )
 script = ExtResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/bg_tree_3"]
-anims/shake = SubResource( 2 )
+anims/shake = SubResource( 4 )
 
 [node name="bg_tree_2" type="Sprite" parent="Background"]
 position = Vector2( 869.354, 233.779 )
@@ -256,7 +254,7 @@ texture = ExtResource( 9 )
 script = ExtResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/bg_tree_2"]
-anims/shake = SubResource( 3 )
+anims/shake = SubResource( 5 )
 
 [node name="bg_ground" type="Sprite" parent="."]
 position = Vector2( 512.012, 305.503 )
@@ -273,29 +271,36 @@ scale = Vector2( 0.3, 0.3 )
 position = Vector2( 128, 464 )
 
 [node name="Character" parent="Characters/Pos1" instance=ExtResource( 3 )]
+position = Vector2( 0, 3 )
 scale = Vector2( -0.25, 0.25 )
 
 [node name="Pos2" type="Position2D" parent="Characters"]
 position = Vector2( 288, 456 )
 
 [node name="Character" parent="Characters/Pos2" instance=ExtResource( 3 )]
+position = Vector2( 0, -8 )
 scale = Vector2( -0.25, 0.25 )
 character_name = "Roxie"
+is_female = true
 
 [node name="Pos3" type="Position2D" parent="Characters"]
 position = Vector2( 656, 456 )
 
 [node name="Character" parent="Characters/Pos3" instance=ExtResource( 3 )]
+position = Vector2( 4, -18 )
 scale = Vector2( 0.25, 0.25 )
 character_name = "Tatiana"
+is_female = true
+sound_index = 2
 
 [node name="Pos4" type="Position2D" parent="Characters"]
 position = Vector2( 824, 464 )
 
 [node name="Character" parent="Characters/Pos4" instance=ExtResource( 3 )]
-position = Vector2( 13.2781, -8.85217 )
+position = Vector2( 2.27808, -21.8522 )
 scale = Vector2( 0.25, 0.25 )
 character_name = "Gio"
+sound_index = 2
 
 [node name="Area2D" type="Area2D" parent="." groups=[
 "Forest",
@@ -304,11 +309,11 @@ character_name = "Gio"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
 position = Vector2( 488, 144 )
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 
 [node name="WOOD" type="Area2D" parent="."]
 position = Vector2( 962.529, 530.514 )
-script = SubResource( 14 )
+script = SubResource( 7 )
 
 [node name="collect_sprite" type="Sprite" parent="WOOD"]
 visible = false
@@ -339,12 +344,12 @@ texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WOOD"]
 position = Vector2( 0, -26 )
-shape = SubResource( 13 )
+shape = SubResource( 8 )
 
 [node name="Tween" type="Tween" parent="WOOD"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WOOD"]
-anims/show_amount = SubResource( 15 )
+anims/show_amount = SubResource( 9 )
 
 [node name="Label" type="Label" parent="WOOD"]
 modulate = Color( 1, 1, 1, 0 )
@@ -352,12 +357,16 @@ margin_left = -32.5802
 margin_top = -76.3064
 margin_right = 8.4198
 margin_bottom = 40.6936
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = SubResource( 10 )
 text = "1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
+autoplay = true
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
 autoplay = true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/male_2-mumble_6.wav-a3d7687a008f75a121be881c1d4d6a9d.sample"
+
+[deps]
+
+source_file="res://SoundEffects/Mumbles/male_2-mumble_6.wav"
+dest_files=[ "res://.import/male_2-mumble_6.wav-a3d7687a008f75a121be881c1d4d6a9d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

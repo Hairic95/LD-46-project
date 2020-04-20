@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sine_wave_loop.ogg-4d10f14ef12b7eb3c7f33a3070eede75.oggstr"
+
+[deps]
+
+source_file="res://SoundEffects/sine_wave_loop.ogg"
+dest_files=[ "res://.import/sine_wave_loop.ogg-4d10f14ef12b7eb3c7f33a3070eede75.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

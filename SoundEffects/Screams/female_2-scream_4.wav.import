@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/female_2-scream_4.wav-8cf5429bc35a5e1bd38302e1b52e26be.sample"
+
+[deps]
+
+source_file="res://SoundEffects/Screams/female_2-scream_4.wav"
+dest_files=[ "res://.import/female_2-scream_4.wav-8cf5429bc35a5e1bd38302e1b52e26be.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

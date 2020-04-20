@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/female_2-mumble_3.wav-0120b03ff5bf79d81db9ecccdbfa5c64.sample"
+
+[deps]
+
+source_file="res://SoundEffects/Mumbles/female_2-mumble_3.wav"
+dest_files=[ "res://.import/female_2-mumble_3.wav-0120b03ff5bf79d81db9ecccdbfa5c64.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

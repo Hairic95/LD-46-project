@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/small-fire-loop.ogg-72985a00df1bb549304d47ad03b37415.oggstr"
+
+[deps]
+
+source_file="res://SoundEffects/Fire/small-fire-loop.ogg"
+dest_files=[ "res://.import/small-fire-loop.ogg-72985a00df1bb549304d47ad03b37415.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

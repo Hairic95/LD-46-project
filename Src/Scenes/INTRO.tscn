@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Music/title_music.wav" type="AudioStream" id=1]
+[ext_resource path="res://Music/title_music.ogg" type="AudioStream" id=1]
 [ext_resource path="res://Fonts/HWYGOTH.TTF" type="DynamicFontData" id=2]
 [ext_resource path="res://Src/Entities/Campfire.tscn" type="PackedScene" id=3]
 
@@ -81,10 +81,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 5, 6, 7, 8, 9, 10, 10.4, 20, 21.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
-"args": [ "Donovan" ],
+"args": [ "Donovan Jonk" ],
 "method": "set_display_text"
 }, {
-"args": [ "Hairic" ],
+"args": [ "Hairic Lilred" ],
 "method": "set_display_text"
 }, {
 "args": [ "NovemberDev" ],
@@ -93,7 +93,7 @@ tracks/4/keys = {
 "args": [ "Raindrinker" ],
 "method": "set_display_text"
 }, {
-"args": [ "Robert_MH" ],
+"args": [ "Robert Hunter" ],
 "method": "set_display_text"
 }, {
 "args": [ "and" ],
@@ -233,7 +233,7 @@ margin_top = -56.0
 margin_right = 232.0
 margin_bottom = 56.0
 custom_fonts/font = SubResource( 9 )
-text = "A GAME BY"
+text = "A game by"
 align = 1
 valign = 1
 __meta__ = {

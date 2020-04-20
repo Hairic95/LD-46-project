@@ -18,6 +18,7 @@ var current_text_entites
 var current_text_entity
 var current_timer = 0.0
 var current_character_names = []
+var is_blocking = false
 
 # Signal when the fade-in/-out starts
 signal on_background_fade_in
@@ -51,6 +52,7 @@ func fade_in_screen(entity_name, character_names = []):
 
 func fade_in_gameover(entity_name, character_names = []):
 	GLOBALS.game_over = true
+	is_blocking = true
 	$Background/GAMEOVER.visible = true
 	$Background/GAMEOVER/MouthAnimator.play("mouth")
 	$Background/GAMEOVER/DemonAnimator.play("zoom")
@@ -70,9 +72,13 @@ func handle_background_visibility(backgroundVisible):
 	if backgroundVisible:
 		$AnimationPlayer.play("fade-in")
 		emit_signal("on_background_fade_in")
+		GLOBALS.can_control = false
+		is_blocking = true
 	else:
 		$AnimationPlayer.play("fade-out")
 		emit_signal("on_background_fade_out")
+		GLOBALS.can_control = true
+		is_blocking = false
 
 func set_text_entity(entity_name):
 	current_entity_name = entity_name

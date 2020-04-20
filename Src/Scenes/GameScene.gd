@@ -23,7 +23,8 @@ func _process(delta):
 	if round_start_timeout > 0.0:
 		round_start_timeout -= delta
 	else:
-		GLOBALS.can_control = true
+		if !BlackScreen.is_blocking:
+			GLOBALS.can_control = true
 
 func is_sacrifice_music_playing(is_playing):
 	if is_playing:

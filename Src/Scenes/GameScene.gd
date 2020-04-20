@@ -56,7 +56,7 @@ func on_character_on_forest(character):
 	for c in $Characters.get_children():
 		c.get_child(0).can_be_dragged = false
 	
-	BlackScreen.fade_in_screen("WOOD" + str(randi()%10+1), [character.character_name])
+	BlackScreen.fade_in_screen("WOOD" + str(randi()%13+1), [character.character_name])
 	print(character.character_name + " on forest")
 	current_drag_character = character
 	
@@ -84,6 +84,7 @@ func on_before_background_invisible():
 	
 		GLOBALS.emit_signal("on_round_end")
 		reset_characters()
+		return
 	if "ENDING" in BlackScreen.current_entity_name:
 		print("ended")
 		get_node("/root").add_child(load("res://Src/Entities/End.tscn").instance())

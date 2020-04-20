@@ -58,10 +58,12 @@ func on_character_on_forest(character):
 func on_before_background_invisible():
 	if "WOOD" in BlackScreen.current_entity_name:
 		print("reset after forest")
-		# TODO: add logic for wood collect probability
-		GLOBALS.emit_signal("on_collect_wood", current_drag_character, 1)
 		
-		var text = TEXT.get_text_entity("COLLECT" + str(randi()%3+1))[0].text
+		var random_wood_index = (randi()%3+1)
+		print(random_wood_index)
+		GLOBALS.emit_signal("on_collect_wood", current_drag_character, random_wood_index - 1)
+		
+		var text = TEXT.get_text_entity("COLLECT" + str(random_wood_index))[0].text
 		text = text.replace("{0}", current_drag_character.character_name)
 		GLOBALS.NOTIFICATIONS.notify(text)
 	

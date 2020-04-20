@@ -9,10 +9,12 @@ func _ready():
 func _process(delta):
 	restart_timeout -= delta
 	if restart_timeout <= 0.0:
-		# reload level: GLOBALS.restart_game()
+		# reload level: 
+		if OS.get_name() == "HTML5":
+			JavaScript.eval("window.location.reload()")
+		else:
+			GLOBALS.restart_game()
 		
-		# to reload page:
-		JavaScript.eval("window.location.reload()")
 		set_process(false)
 
 func fade_out():

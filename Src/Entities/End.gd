@@ -13,6 +13,7 @@ func _process(delta):
 		
 		# to reload page:
 		JavaScript.eval("window.location.reload()")
+		set_process(false)
 
 func fade_out():
 	$AnimationPlayer.play("fade_out")

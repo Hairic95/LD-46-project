@@ -189,9 +189,8 @@ func _physics_process(delta):
 	if is_being_dragged and global_position != get_global_mouse_position():
 		if get_tree().get_root().get_visible_rect().has_point(get_global_mouse_position()):
 			global_position = lerp(global_position, get_global_mouse_position(), 15.0 * delta)
-		else:
-			return_to_start_pos()
-			is_being_dragged = false
+	if !is_being_dragged:
+		return_to_start_pos()
 
 func _input(ev):
 	if !GLOBALS.can_control: return
@@ -199,6 +198,7 @@ func _input(ev):
 		if is_mouse_over and ev.button_index == BUTTON_LEFT:
 			if ev.pressed:
 				is_being_dragged = true
+				$Tween.stop_all()
 			else:
 				is_being_dragged = false
 				if is_on_fire:
@@ -209,7 +209,7 @@ func _input(ev):
 					position = Vector2(-4.453, 15.697)
 
 func return_to_start_pos():
-	$Tween.interpolate_property(self, \"position\", get_position(), Vector2(-4.453, 15.697), 2.0, Tween.TRANS_SINE, Tween.EASE_IN)
+	$Tween.interpolate_property(self, \"position\", get_position(), Vector2(-4.453, 15.697), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
 "
 
@@ -442,12 +442,12 @@ scale = Vector2( 0.3, 0.2 )
 texture = ExtResource( 19 )
 script = SubResource( 8 )
 
+[node name="Tween" type="Tween" parent="WOOD/drag_sprite"]
+
 [node name="Area2D" type="Area2D" parent="WOOD/drag_sprite"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WOOD/drag_sprite/Area2D"]
 shape = SubResource( 9 )
-
-[node name="Tween" type="Tween" parent="WOOD"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WOOD"]
 anims/show_amount = SubResource( 10 )

@@ -6,10 +6,10 @@
 [ext_resource path="res://Src/Entities/Campfire.gd" type="Script" id=6]
 [ext_resource path="res://Fonts/HWYGOTH.TTF" type="DynamicFontData" id=7]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 224, 331.294 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "fire_hp"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Label:modulate")
@@ -73,12 +73,12 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 5.30005, -214.653 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fire_hp = SubResource( 4 )
+anims/fire_hp = SubResource( 2 )
 
 [node name="Label" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0 )

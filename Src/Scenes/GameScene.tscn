@@ -157,7 +157,7 @@ func update_wood_display():
 		$drag_sprite.visible = true
 "
 
-[sub_resource type="GDScript" id=12]
+[sub_resource type="GDScript" id=8]
 script/source = "extends Sprite
 
 var is_on_fire = false
@@ -209,11 +209,10 @@ func return_to_start_pos():
 	$Tween.start()
 "
 
-[sub_resource type="CircleShape2D" id=11]
+[sub_resource type="CircleShape2D" id=9]
 radius = 153.093
 
-[sub_resource type="Animation" id=9]
-resource_name = "show_amount"
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Label:modulate")
 tracks/0/interp = 2
@@ -239,19 +238,19 @@ tracks/1/keys = {
 "values": [ Vector2( -32.5802, -76.3064 ), Vector2( -30.8655, -122.605 ), Vector2( -30.8655, -122.605 ), Vector2( -29.1508, -96.8834 ) ]
 }
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=11]
 size = 50
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 14 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=12]
 size = 50
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 14 )
 
-[sub_resource type="GDScript" id=14]
+[sub_resource type="GDScript" id=13]
 script/source = "extends Label
 
 var time = 0.0
@@ -437,17 +436,17 @@ position = Vector2( -4.45313, 15.6968 )
 rotation = 0.0689044
 scale = Vector2( 0.182713, 0.201312 )
 texture = ExtResource( 1 )
-script = SubResource( 12 )
+script = SubResource( 8 )
 
 [node name="Area2D" type="Area2D" parent="WOOD/drag_sprite"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WOOD/drag_sprite/Area2D"]
-shape = SubResource( 11 )
+shape = SubResource( 9 )
 
 [node name="Tween" type="Tween" parent="WOOD"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WOOD"]
-anims/show_amount = SubResource( 9 )
+anims/show_amount = SubResource( 10 )
 
 [node name="Label" type="Label" parent="WOOD"]
 modulate = Color( 1, 1, 1, 0 )
@@ -455,7 +454,7 @@ margin_left = -32.5802
 margin_top = -76.3064
 margin_right = 8.4198
 margin_bottom = 40.6936
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 text = "1"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -475,11 +474,11 @@ margin_left = -3.0
 margin_top = 79.0
 margin_right = 1029.0
 margin_bottom = 136.0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 12 )
 text = "EVENT"
 align = 1
 valign = 1
-script = SubResource( 14 )
+script = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

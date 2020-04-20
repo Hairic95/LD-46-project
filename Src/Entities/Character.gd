@@ -88,7 +88,7 @@ func _on_MouseArea_mouse_exited():
 
 func _on_CheckArea_area_entered(area):
 	if area.is_in_group("Campfire"):
-		$SacrificeMusic.volume_db = 5.0
+		$SacrificeMusic.volume_db = 0.0
 		GLOBALS.emit_signal("on_sacrifice_music", true)
 		is_on_fire = true
 	if area.is_in_group("Forest"):

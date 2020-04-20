@@ -1,5 +1,6 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
+[ext_resource path="res://SoundEffects/tree_falling.ogg" type="AudioStream" id=1]
 [ext_resource path="res://Src/Entities/Campfire.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Src/Entities/Character.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Src/Scenes/GameScene.gd" type="Script" id=4]
@@ -486,3 +487,7 @@ script = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Forest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = 2.0

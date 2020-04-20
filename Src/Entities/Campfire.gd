@@ -29,7 +29,7 @@ func update_fire(new_hp):
 func _ready():
 	$FIRE/Sprite/Anim.play("Fire")
 	GLOBALS.connect("update_fire", self, "do_update_fire")
-	update_fire(4)
+	update_fire(3)
 
 func do_update_fire(amount):
 	update_fire(fire_hp + amount)

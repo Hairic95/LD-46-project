@@ -42,11 +42,15 @@ func on_character_on_fire(character):
 	$Campfire.update_fire(4)
 	update_character_count(-1)
 	GLOBALS.emit_signal("on_sacrifice", current_drag_character)
-	GLOBALS.emit_signal("on_round_end")
+	#GLOBALS.emit_signal("on_round_end")
 	sacrificed_character_names.push_back(current_drag_character.character_name)
-	
+
 func on_character_on_forest(character):
 	randomize()
+	
+	for c in $Characters.get_children():
+		c.get_child(0).can_be_dragged = false
+	
 	BlackScreen.fade_in_screen("WOOD" + str(randi()%10+1), [character.character_name])
 	print(character.character_name + " on forest")
 	current_drag_character = character
@@ -54,15 +58,17 @@ func on_character_on_forest(character):
 func on_before_background_invisible():
 	if "WOOD" in BlackScreen.current_entity_name:
 		print("reset after forest")
-		# TODO: add logic for wood collect probability
-		GLOBALS.emit_signal("on_collect_wood", current_drag_character, 1)
 		
-		var text = TEXT.get_text_entity("COLLECT" + str(randi()%3+1))[0].text
+		var random_wood_index = (randi()%3+1)
+		print(random_wood_index)
+		GLOBALS.emit_signal("on_collect_wood", current_drag_character, random_wood_index - 1)
+		
+		var text = TEXT.get_text_entity("COLLECT" + str(random_wood_index))[0].text
 		text = text.replace("{0}", current_drag_character.character_name)
 		GLOBALS.NOTIFICATIONS.notify(text)
 	
+	GLOBALS.emit_signal("on_round_end")
 	reset_characters()
-		
 func reset_characters():
 	for c in $Characters.get_children():
 		c.get_child(0).return_to_start_pos()
@@ -78,9 +84,13 @@ func on_round_end():
 	
 	if !GLOBALS.game_over:
 		round_counter += 1
-		GLOBALS.NOTIFICATIONS.notify("Round " + str(round_counter))
+		GLOBALS.NOTIFICATIONS.notify("Hours passed: " + str(round_counter))
 		GLOBALS.can_control = false
 		round_start_timeout = 3.0
+	
+	for c in $Characters.get_children():
+		c.get_child(0).return_to_start_pos()
+		c.get_child(0).can_be_dragged = true
 
 func on_game_over():
 	$Music.stop()

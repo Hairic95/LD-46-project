@@ -36,11 +36,12 @@ func set_sprite(is_dragging):
 		$Sprite.texture = load(str("res://Textures/char_idle_", character_name.to_lower(), ".png"))
 		
 func _process(delta):
-	next_mumble_timeout -= delta
+	#next_mumble_timeout -= delta
 	
-	if next_mumble_timeout <= 0.0:
-		play_mumble()
-		next_mumble_timeout = rand_range(MUMBLE_LOWER_CAP, MUBMLE_UPPER_CAP)
+	#if next_mumble_timeout <= 0.0:
+		#play_mumble()
+		#next_mumble_timeout = rand_range(MUMBLE_LOWER_CAP, MUBMLE_UPPER_CAP)
+		pass
 	
 func _physics_process(delta):
 	if can_be_dragged:
@@ -61,6 +62,7 @@ func _input(ev):
 		if can_be_dragged:
 			if is_mouse_over and ev.button_index == BUTTON_LEFT:
 				if ev.pressed:
+					play_mumble()
 					$Tween.stop(self)
 					is_being_dragged = true
 					emit_signal("is_being_dragged", self, true)

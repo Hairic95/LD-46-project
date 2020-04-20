@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bg_tree_3.png-f38107f51a29aaf6f17ca7538261b56a.stex"
+path="res://.import/log_1.png-0977473e917642d2db5307504dc72282.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Src/Autoloads/bg_tree_3.png"
-dest_files=[ "res://.import/bg_tree_3.png-f38107f51a29aaf6f17ca7538261b56a.stex" ]
+source_file="res://Textures/log_1.png"
+dest_files=[ "res://.import/log_1.png-0977473e917642d2db5307504dc72282.stex" ]
 
 [params]
 

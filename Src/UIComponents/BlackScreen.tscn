@@ -9,7 +9,7 @@
 [ext_resource path="res://Textures/demon_mouth_4.png" type="Texture" id=7]
 [ext_resource path="res://Textures/demon_mouth_3.png" type="Texture" id=8]
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=1]
 resource_name = "mouth"
 length = 2.0
 loop = true
@@ -27,7 +27,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=2]
 resource_name = "zoom"
 length = 30.0
 tracks/0/type = "value"
@@ -79,12 +79,11 @@ tracks/3/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 50
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "fade-in"
+[sub_resource type="Animation" id=4]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Background:modulate")
@@ -131,8 +130,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "fade-in-text"
+[sub_resource type="Animation" id=5]
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
@@ -162,7 +160,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Background:modulate")
@@ -206,8 +204,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "fade-out-text"
+[sub_resource type="Animation" id=7]
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
@@ -223,7 +220,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
@@ -282,10 +279,10 @@ scale = Vector2( 0.87062, 0.87062 )
 texture = ExtResource( 4 )
 
 [node name="MouthAnimator" type="AnimationPlayer" parent="Background/GAMEOVER"]
-anims/mouth = SubResource( 7 )
+anims/mouth = SubResource( 1 )
 
 [node name="DemonAnimator" type="AnimationPlayer" parent="Background/GAMEOVER"]
-anims/zoom = SubResource( 8 )
+anims/zoom = SubResource( 2 )
 
 [node name="TextBox" type="RichTextLabel" parent="Background"]
 modulate = Color( 1, 1, 1, 0 )
@@ -298,7 +295,7 @@ margin_top = -223.0
 margin_right = 430.0
 margin_bottom = 276.0
 mouse_filter = 2
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 3 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 __meta__ = {
@@ -306,8 +303,8 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fade-in = SubResource( 2 )
-anims/fade-in-text = SubResource( 3 )
-anims/fade-out = SubResource( 4 )
-anims/fade-out-text = SubResource( 5 )
-anims/fade-switch-text = SubResource( 6 )
+anims/fade-in = SubResource( 4 )
+anims/fade-in-text = SubResource( 5 )
+anims/fade-out = SubResource( 6 )
+anims/fade-out-text = SubResource( 7 )
+anims/fade-switch-text = SubResource( 8 )

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/flare_up.ogg-60307f45667c1a1f210106100cbb3c29.oggstr
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

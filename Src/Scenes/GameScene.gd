@@ -61,7 +61,7 @@ func on_character_on_forest(character):
 func on_before_background_invisible():
 	if "WOOD" in BlackScreen.current_entity_name:
 		print("reset after forest")
-		
+		$Forest.play()
 		var chance = randi()% 1000 + 1
 		
 		var random_wood_index = 1

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/tree_falling.ogg-67de1455946e8c5d33e78c349ea2078e.og
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

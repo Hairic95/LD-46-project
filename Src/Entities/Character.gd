@@ -20,6 +20,10 @@ signal is_being_dragged(self_instance, bool_value)
 signal is_put_on_fire(self_instance)
 signal is_sent_on_forest(self_instance)
 
+var MUMBLE_LOWER_CAP = 5.0
+var MUBMLE_UPPER_CAP = 20.0
+var next_mumble_timeout = rand_range(MUMBLE_LOWER_CAP, MUBMLE_UPPER_CAP)
+
 func _ready():
 	$Sprite.material = $Sprite.material.duplicate(true)
 	$Scream.connect("finished", self, "on_scream_finished")
@@ -31,6 +35,13 @@ func set_sprite(is_dragging):
 	else:
 		$Sprite.texture = load(str("res://Textures/char_idle_", character_name.to_lower(), ".png"))
 		
+func _process(delta):
+	next_mumble_timeout -= delta
+	
+	if next_mumble_timeout <= 0.0:
+		play_mumble()
+		next_mumble_timeout = rand_range(MUMBLE_LOWER_CAP, MUBMLE_UPPER_CAP)
+	
 func _physics_process(delta):
 	if can_be_dragged:
 		if is_being_dragged and global_position != get_global_mouse_position():
@@ -44,6 +55,8 @@ func _physics_process(delta):
 		get_parent().queue_free()
 
 func _input(ev):
+	if !GLOBALS.can_control: return
+	
 	if ev is InputEventMouseButton:
 		if can_be_dragged:
 			if is_mouse_over and ev.button_index == BUTTON_LEFT:
@@ -71,12 +84,16 @@ func _on_MouseArea_mouse_exited():
 
 func _on_CheckArea_area_entered(area):
 	if area.is_in_group("Campfire"):
+		$SacrificeMusic.play()
+		GLOBALS.emit_signal("on_sacrifice_music", true)
 		is_on_fire = true
 	if area.is_in_group("Forest"):
 		is_on_forest = true
 
 func _on_CheckArea_area_exited(area):
 	if area.is_in_group("Campfire"):
+		$SacrificeMusic.stop()
+		GLOBALS.emit_signal("on_sacrifice_music", false)
 		is_on_fire = false
 	if area.is_in_group("Forest"):
 		is_on_forest = false
@@ -96,13 +113,24 @@ func sacrifice():
 	if is_female:
 		$Scream.stream = load("res://SoundEffects/Screams/female_" + str(sound_index) + "-scream_" + str(randi()%4+1) + ".wav")
 	else:
-		var sample_count = 1
 		if sound_index == 1:
 			$Scream.stream = load("res://SoundEffects/Screams/male_" + str(sound_index) + "-scream_" + str(randi()%4+1) + ".wav")
 		else:
 			$Scream.stream = load("res://SoundEffects/Screams/male_2-scream_1.wav")
+	$Sizzle.stream = load("res://SoundEffects/Sizzle/sizzle-0" + str(randi()%3+1) + ".ogg")
+	$Sizzle.play()
 	$Scream.play()
 	$AnimationPlayer.play("sacrifice")
 
 func on_scream_finished():
 	death_sound_played = true
+
+func play_mumble():
+	if is_female:
+		$Mumble.stream = load("res://SoundEffects/Mumbles/female_" + str(sound_index) + "-mumble_" + str(randi()%4+1) + ".wav")
+	else:
+		if sound_index == 1:
+			$Mumble.stream = load("res://SoundEffects/Mumbles/male_" + str(sound_index) + "-mumble_" + str(randi()%4+1) + ".wav")
+		else:
+			$Mumble.stream = load("res://SoundEffects/Mumbles/male_" + str(sound_index) + "-mumble_" + str(randi()%6+1) + ".wav")
+	$Mumble.play()

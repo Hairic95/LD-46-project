@@ -2,6 +2,8 @@ extends Node2D
 
 var current_drag_character
 var character_count = 4
+var round_counter = 1
+var round_start_timeout = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,6 +12,20 @@ func _ready():
 		c.get_child(0).connect("is_put_on_fire", self, "on_character_on_fire")
 		c.get_child(0).connect("is_sent_on_forest", self, "on_character_on_forest")
 	BlackScreen.connect("before_background_invisible", self, "on_before_background_invisible")
+	GLOBALS.connect("on_sacrifice_music", self, "is_sacrifice_music_playing")
+	GLOBALS.connect("on_round_end", self, "on_round_end")
+
+func _process(delta):
+	if round_start_timeout > 0.0:
+		round_start_timeout -= delta
+	else:
+		GLOBALS.can_control = true
+
+func is_sacrifice_music_playing(is_playing):
+	if is_playing:
+		$Music.stop()
+	else:
+		$Music.play()
 
 func set_all_character_draggable(excluded_char, is_being_dragged):
 	for c in $Characters.get_children():
@@ -21,12 +37,15 @@ func on_character_on_fire(character):
 	print(character.character_name + " on fire")
 	current_drag_character = character
 	current_drag_character.sacrifice()
+	GLOBALS.NOTIFICATIONS.notify("You sacrificed " + str(current_drag_character.character_name))
 	$Campfire.update_fire(4)
 	update_character_count(-1)
+	GLOBALS.emit_signal("on_sacrifice", current_drag_character)
+	GLOBALS.emit_signal("on_round_end")
 	
 func on_character_on_forest(character):
 	randomize()
-	BlackScreen.fade_in_screen("WOOD" + str(randi()%11+1), [character.character_name])
+	BlackScreen.fade_in_screen("WOOD" + str(randi()%10+1), [character.character_name])
 	print(character.character_name + " on forest")
 	current_drag_character = character
 	
@@ -35,6 +54,10 @@ func on_before_background_invisible():
 		print("reset after forest")
 		# TODO: add logic for wood collect probability
 		GLOBALS.emit_signal("on_collect_wood", current_drag_character, 1)
+		
+		var text = TEXT.get_text_entity("COLLECT" + str(randi()%3+1))[0].text
+		text = text.replace("{0}", current_drag_character.character_name)
+		GLOBALS.NOTIFICATIONS.notify(text)
 	
 	reset_characters()
 		
@@ -45,4 +68,13 @@ func reset_characters():
 func update_character_count(count):
 	character_count += count
 	
-	# TODO: if below 1, gameover
+	GLOBALS.emit_signal("game_over")
+
+func on_round_end():
+	GLOBALS.emit_signal("update_fire", -1)
+	
+	if !GLOBALS.game_over:
+		round_counter += 1
+		GLOBALS.NOTIFICATIONS.notify("Round " + str(round_counter))
+		GLOBALS.can_control = false
+		round_start_timeout = 3.0

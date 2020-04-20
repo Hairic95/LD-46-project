@@ -1,9 +1,13 @@
 extends Node2D
 
-var fire_hp = 4
+var fire_hp = 5
 
 func update_fire(new_hp):
 	fire_hp = new_hp
+	
+	if fire_hp > 5:
+		fire_hp = 5
+	
 	$FIRE.scale = Vector2(new_hp * 0.25, new_hp * 0.25)
 	
 	if fire_hp > 2.0:
@@ -20,11 +24,15 @@ func update_fire(new_hp):
 		# TODO: darkness
 		
 		# game over
-		GLOBALS.emit_signal("game_over")
+		GLOBALS.emit_signal("on_game_over")
 
 func _ready():
 	$FIRE/Sprite/Anim.play("Fire")
+	GLOBALS.connect("update_fire", self, "do_update_fire")
 	update_fire(4)
+
+func do_update_fire(amount):
+	update_fire(fire_hp + amount)
 
 func show_label():
 	$CanvasLayer/Label.text = str(fire_hp)

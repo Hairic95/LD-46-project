@@ -43,6 +43,7 @@ func fade_in_screen(entity_name, character_names = []):
 	handle_background_visibility(true)
 
 func fade_in_gameover(entity_name, character_names = []):
+	GLOBALS.game_over = true
 	$Background/GAMEOVER.visible = true
 	$Background/GAMEOVER/MouthAnimator.play("mouth")
 	$Background/GAMEOVER/DemonAnimator.play("zoom")

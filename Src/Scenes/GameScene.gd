@@ -82,6 +82,7 @@ func on_before_background_invisible():
 	
 		GLOBALS.emit_signal("on_round_end")
 		reset_characters()
+		return
 	if "ENDING" in BlackScreen.current_entity_name:
 		print("ended")
 		get_node("/root").add_child(load("res://Src/Entities/End.tscn").instance())

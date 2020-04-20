@@ -453,6 +453,7 @@ shape = SubResource( 9 )
 anims/show_amount = SubResource( 10 )
 
 [node name="Label" type="Label" parent="WOOD"]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_left = -32.5802
 margin_top = -76.3064

@@ -42,7 +42,7 @@ func on_character_on_fire(character):
 	$Campfire.update_fire(4)
 	update_character_count(-1)
 	GLOBALS.emit_signal("on_sacrifice", current_drag_character)
-	GLOBALS.emit_signal("on_round_end")
+	#GLOBALS.emit_signal("on_round_end")
 	sacrificed_character_names.push_back(current_drag_character.character_name)
 
 func on_character_on_forest(character):

@@ -82,7 +82,7 @@ func on_round_end():
 	
 	if !GLOBALS.game_over:
 		round_counter += 1
-		GLOBALS.NOTIFICATIONS.notify("Round " + str(round_counter))
+		GLOBALS.NOTIFICATIONS.notify("Hours passed: " + str(round_counter))
 		GLOBALS.can_control = false
 		round_start_timeout = 3.0
 	

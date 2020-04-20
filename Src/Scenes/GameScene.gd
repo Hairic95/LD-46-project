@@ -41,9 +41,9 @@ func on_character_on_fire(character):
 	GLOBALS.NOTIFICATIONS.notify("You sacrificed " + str(current_drag_character.character_name))
 	$Campfire.update_fire(4)
 	update_character_count(-1)
+	sacrificed_character_names.push_back(current_drag_character.character_name)
 	GLOBALS.emit_signal("on_sacrifice", current_drag_character)
 	#GLOBALS.emit_signal("on_round_end")
-	sacrificed_character_names.push_back(current_drag_character.character_name)
 
 func on_character_on_forest(character):
 	randomize()
@@ -67,8 +67,14 @@ func on_before_background_invisible():
 		text = text.replace("{0}", current_drag_character.character_name)
 		GLOBALS.NOTIFICATIONS.notify(text)
 	
-	GLOBALS.emit_signal("on_round_end")
-	reset_characters()
+		GLOBALS.emit_signal("on_round_end")
+		reset_characters()
+	if "ENDING" in BlackScreen.current_entity_name:
+		print("ended")
+		get_node("/root").add_child(load("res://Src/Entities/End.tscn").instance())
+		BlackScreen.reset()
+		queue_free()
+		
 func reset_characters():
 	for c in $Characters.get_children():
 		c.get_child(0).return_to_start_pos()

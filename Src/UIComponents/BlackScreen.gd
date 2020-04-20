@@ -89,3 +89,6 @@ func display_text_entity():
 		text_to_set = text_to_set.replace("{" + str(i) + "}", current_character_names[i])
 	
 	$Background/TextBox.bbcode_text = "[center]" + text_to_set + "[/center]"
+
+func reset():
+	$GAMEOVER.visible = false

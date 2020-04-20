@@ -1,16 +1,15 @@
 extends Node2D
 
+var restart_timeout = 8.0
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	GLOBALS.tv_screen = self
+	$AnimationPlayer.play("start")
 
+func _process(delta):
+	restart_timeout -= delta
+	if restart_timeout <= 0.0:
+		GLOBALS.restart_game()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func fade_out():
+	$AnimationPlayer.play("fade_out")

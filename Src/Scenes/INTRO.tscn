@@ -14,9 +14,7 @@ func set_display_text(text):
 	$Label.text = text
 
 func start_game():
-	GLOBALS.game_scene = load(\"res://Src/Scenes/GameScene.tscn\").instance()
-	get_node(\"/root\").add_child(GLOBALS.game_scene)
-	GLOBALS.game_started = true
+	GLOBALS.start_game()
 "
 
 [sub_resource type="Animation" id=2]

@@ -58,6 +58,8 @@ func _physics_process(delta):
 func _input(ev):
 	if !GLOBALS.can_control: return
 	
+	if is_dead: return
+	
 	if ev is InputEventMouseButton:
 		if can_be_dragged:
 			if is_mouse_over and ev.button_index == BUTTON_LEFT:
@@ -112,6 +114,7 @@ func show_overlay_color(show):
 		$Sprite.material.set_shader_param("overlay_color", Color(1.0, 1.0, 1.0, 1.0))
 
 func sacrifice():
+	is_dead = true
 	if is_female:
 		$Scream.stream = load("res://SoundEffects/Screams/female_" + str(sound_index) + "-scream_" + str(randi()%4+1) + ".wav")
 	else:

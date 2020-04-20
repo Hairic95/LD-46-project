@@ -486,3 +486,8 @@ script = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CanControlTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+[connection signal="timeout" from="CanControlTimer" to="." method="_on_CanControlTimer_timeout"]

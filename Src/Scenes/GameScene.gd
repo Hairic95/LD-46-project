@@ -46,6 +46,8 @@ func on_character_on_fire(character):
 	sacrificed_character_names.push_back(current_drag_character.character_name)
 	GLOBALS.emit_signal("on_sacrifice", current_drag_character)
 	update_character_count(-1)
+	GLOBALS.can_control = false
+	$CanControlTimer.start()
 	#GLOBALS.emit_signal("on_round_end")
 
 func on_character_on_forest(character):
@@ -104,7 +106,7 @@ func on_round_end():
 	if !GLOBALS.game_over:
 		round_counter += 1
 		GLOBALS.NOTIFICATIONS.notify("Hours passed: " + str(round_counter))
-		GLOBALS.can_control = false
+		
 		round_start_timeout = 3.0
 	
 	for c in $Characters.get_children():

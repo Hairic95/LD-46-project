@@ -322,6 +322,7 @@ margin_top = -250.0
 margin_right = 100.0
 margin_bottom = -50.0
 rect_min_size = Vector2( 200, 200 )
+mouse_filter = 2
 size_flags_horizontal = 2
 size_flags_vertical = 2
 texture = ExtResource( 9 )

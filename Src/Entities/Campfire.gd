@@ -7,7 +7,7 @@ func update_fire(new_hp):
 	
 	if fire_hp > 5:
 		fire_hp = 5
-	
+	print("fire hp: " + str(fire_hp))
 	$FIRE.scale = Vector2(new_hp * 0.25, new_hp * 0.25)
 	
 	if fire_hp > 2.0:

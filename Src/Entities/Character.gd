@@ -70,15 +70,15 @@ func _input(ev):
 					emit_signal("is_being_dragged", self, true)
 					$AnimationPlayer.play("on_start_drag")
 					set_sprite(true)
-				else:
-					is_being_dragged = false
-					if is_on_fire:
-						emit_signal("is_put_on_fire", self)
-					if is_on_forest:
-						emit_signal("is_sent_on_forest", self)
-					if !is_on_fire and !is_on_forest:
-						return_to_start_pos()
-					emit_signal("is_being_dragged", self, false)
+			if !ev.pressed and ev.button_index == BUTTON_LEFT:
+				is_being_dragged = false
+				if is_on_fire:
+					emit_signal("is_put_on_fire", self)
+				if is_on_forest:
+					emit_signal("is_sent_on_forest", self)
+				if !is_on_fire and !is_on_forest:
+					return_to_start_pos()
+				emit_signal("is_being_dragged", self, false)
 
 func _on_MouseArea_mouse_entered():
 	is_mouse_over = true

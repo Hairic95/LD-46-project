@@ -41,6 +41,11 @@ func fade_in_screen(entity_name, character_names = []):
 	current_character_names = character_names;
 	handle_background_visibility(true)
 
+func fade_in_gameover(entity_name, character_names = []):
+	if character_names.size() > 0:
+		$GAMEOVER.visible = true
+	fade_in_screen(entity_name, character_names)
+
 func _process(delta):
 	# Hides or switches current text after the seconds 
 	# supplied by the text_entity

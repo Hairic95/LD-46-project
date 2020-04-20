@@ -4,6 +4,7 @@ var current_drag_character
 var character_count = 4
 var round_counter = 1
 var round_start_timeout = 0.0
+var sacrificed_character_names = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,6 +15,7 @@ func _ready():
 	BlackScreen.connect("before_background_invisible", self, "on_before_background_invisible")
 	GLOBALS.connect("on_sacrifice_music", self, "is_sacrifice_music_playing")
 	GLOBALS.connect("on_round_end", self, "on_round_end")
+	GLOBALS.connect("on_game_over", self, "on_game_over")
 
 func _process(delta):
 	if round_start_timeout > 0.0:
@@ -42,6 +44,7 @@ func on_character_on_fire(character):
 	update_character_count(-1)
 	GLOBALS.emit_signal("on_sacrifice", current_drag_character)
 	GLOBALS.emit_signal("on_round_end")
+	sacrificed_character_names.push_back(current_drag_character.character_name)
 	
 func on_character_on_forest(character):
 	randomize()
@@ -78,3 +81,19 @@ func on_round_end():
 		GLOBALS.NOTIFICATIONS.notify("Round " + str(round_counter))
 		GLOBALS.can_control = false
 		round_start_timeout = 3.0
+
+func on_game_over():
+	$Music.stop()
+	$Ambience.stop()
+	for c in $Characters.get_children():
+		c.queue_free()
+	
+	var ending_index = sacrificed_character_names.size() + 1
+	
+	if ending_index == 1:
+		$Music.stream = load("res://Music/good_ending.ogg")
+	else:
+		$Music.stream = load("res://Music/bad_ending.ogg")
+	$Music.play()
+	BlackScreen.fade_in_gameover("ENDING" + str(ending_index), sacrificed_character_names)
+	

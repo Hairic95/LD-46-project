@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Fonts/HWYGOTH.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://Src/UIComponents/BlackScreen.gd" type="Script" id=2]
+[ext_resource path="res://Textures/demon_face.png" type="Texture" id=3]
+[ext_resource path="res://Textures/demon_mouth_2.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -213,3 +215,17 @@ anims/fade-in-text = SubResource( 3 )
 anims/fade-out = SubResource( 4 )
 anims/fade-out-text = SubResource( 5 )
 anims/fade-switch-text = SubResource( 6 )
+
+[node name="GAMEOVER" type="Node2D" parent="."]
+visible = false
+position = Vector2( -14.7369, 0 )
+
+[node name="demon_face" type="Sprite" parent="GAMEOVER"]
+position = Vector2( 534.053, 355.515 )
+scale = Vector2( 0.199258, 0.199258 )
+texture = ExtResource( 3 )
+
+[node name="demon_mouth_2" type="Sprite" parent="GAMEOVER/demon_face"]
+position = Vector2( -21.3977, 430.293 )
+scale = Vector2( 0.87062, 0.87062 )
+texture = ExtResource( 4 )

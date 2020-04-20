@@ -1,6 +1,5 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=32 format=2]
 
-[ext_resource path="res://Textures/wood.png" type="Texture" id=1]
 [ext_resource path="res://Src/Entities/Campfire.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Src/Entities/Character.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Src/Scenes/GameScene.gd" type="Script" id=4]
@@ -19,8 +18,6 @@
 [ext_resource path="res://Textures/log_2.png" type="Texture" id=17]
 [ext_resource path="res://Textures/log_3.png" type="Texture" id=18]
 [ext_resource path="res://Textures/log_1.png" type="Texture" id=19]
-[ext_resource path="res://SoundEffects/Fire/match_strike.ogg" type="AudioStream" id=20]
-[ext_resource path="res://SoundEffects/tree_falling.ogg" type="AudioStream" id=21]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -204,12 +201,11 @@ func _input(ev):
 			else:
 				is_being_dragged = false
 				if is_on_fire:
-					GLOBALS.emit_signal(\"update_fire\", 1)
+					GLOBALS.emit_signal(\"update_fire\", 2)
 					GLOBALS.emit_signal(\"on_dispense_wood\", 1)
 					GLOBALS.NOTIFICATIONS.notify(\"You throw wood into the fire\")
 					#GLOBALS.emit_signal(\"on_round_end\")
 					position = Vector2(-4.453, 15.697)
-					$AudioStreamPlayer.play()
 
 func return_to_start_pos():
 	$Tween.interpolate_property(self, \"position\", get_position(), Vector2(-4.453, 15.697), 2.0, Tween.TRANS_SINE, Tween.EASE_IN)
@@ -424,7 +420,7 @@ visible = false
 position = Vector2( -7.26892, -13.1417 )
 rotation = -0.946066
 scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 1 )
+texture = ExtResource( 17 )
 
 [node name="wood_0" type="Sprite" parent="WOOD"]
 position = Vector2( -5.40039, 14.8019 )
@@ -449,9 +445,6 @@ script = SubResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WOOD/drag_sprite/Area2D"]
 shape = SubResource( 9 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="WOOD/drag_sprite"]
-stream = ExtResource( 20 )
 
 [node name="Tween" type="Tween" parent="WOOD"]
 
@@ -493,6 +486,3 @@ script = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Forest" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 21 )

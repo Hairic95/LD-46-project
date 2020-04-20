@@ -44,9 +44,13 @@ func on_character_on_fire(character):
 	GLOBALS.emit_signal("on_sacrifice", current_drag_character)
 	GLOBALS.emit_signal("on_round_end")
 	sacrificed_character_names.push_back(current_drag_character.character_name)
-	
+
 func on_character_on_forest(character):
 	randomize()
+	
+	for c in $Characters.get_children():
+		c.get_child(0).can_be_dragged = false
+	
 	BlackScreen.fade_in_screen("WOOD" + str(randi()%10+1), [character.character_name])
 	print(character.character_name + " on forest")
 	current_drag_character = character
@@ -61,8 +65,8 @@ func on_before_background_invisible():
 		text = text.replace("{0}", current_drag_character.character_name)
 		GLOBALS.NOTIFICATIONS.notify(text)
 	
+	GLOBALS.emit_signal("on_round_end")
 	reset_characters()
-		
 func reset_characters():
 	for c in $Characters.get_children():
 		c.get_child(0).return_to_start_pos()
@@ -81,6 +85,10 @@ func on_round_end():
 		GLOBALS.NOTIFICATIONS.notify("Round " + str(round_counter))
 		GLOBALS.can_control = false
 		round_start_timeout = 3.0
+	
+	for c in $Characters.get_children():
+		c.get_child(0).return_to_start_pos()
+		c.get_child(0).can_be_dragged = true
 
 func on_game_over():
 	$Music.stop()

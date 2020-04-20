@@ -37,6 +37,7 @@ signal on_text_changed
 # Displays the black-screen with text from the entity by entity_name
 # replaces the character by name, if supplied
 func fade_in_screen(entity_name, character_names = []):
+	
 	set_text_entity(entity_name)
 	current_character_names = character_names;
 	handle_background_visibility(true)

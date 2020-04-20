@@ -205,7 +205,7 @@ func _input(ev):
 					GLOBALS.emit_signal(\"update_fire\", 1)
 					GLOBALS.emit_signal(\"on_dispense_wood\", 1)
 					GLOBALS.NOTIFICATIONS.notify(\"You throw wood into the fire\")
-					GLOBALS.emit_signal(\"on_round_end\")
+					#GLOBALS.emit_signal(\"on_round_end\")
 					position = Vector2(-4.453, 15.697)
 
 func return_to_start_pos():

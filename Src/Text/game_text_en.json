@@ -12,6 +12,10 @@
 	"WOOD8": "{0} goes into the forest carrying an axe.;3.0|They chop down a tree…;3.0",
 	"WOOD9": "{0} heads into the forest to look for more wood.;3.0|As they are walking, they see another person in the corner of their eye.;3.0|When they turn to look at this other person, their gaze is met by familiar eyes.;3.0|Another person who looks exactly like them.;3.0|The familiar stranger lifts an axe.;3.0|And lowers it swiftly at {0}’s head.;3.0|The killing blow struck, the familiar stranger walks in the direction of the camp…;3.0",
 	"WOOD10": "{0} begins walking towards the forest but decides against it and turns around.;3.0|On their way back to their spot, they trip on something and fall.;3.0|When they look at what tripped them…;3.0",
+	"WOOD11": "{0} heads towards the forest to collect wood.;3.0",
+	"WOOD12": "{0} falls asleep near the camp.;3.0|They have a nice dream about chopping down a tree.;3.0|Then, a loud crashing noise wakes them up…;3.0",
+	"WOOD13": "{0} leaves the camp.;3.0|The sound of footsteps follows them.;3.0|They stop and turn around.;3.0|There is nothing there.;3.0|As they continue walking, the footsteps begin again.;3.0|They begin to run quickly back to camp.;3.0|Along the way…;3.0",
+
 
 
 	"COLLECT1": "{0} finds nothing.;3.0",

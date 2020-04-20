@@ -9,7 +9,10 @@ func _ready():
 func _process(delta):
 	restart_timeout -= delta
 	if restart_timeout <= 0.0:
-		GLOBALS.restart_game()
+		# reload level: GLOBALS.restart_game()
+		
+		# to reload page:
+		JavaScript.eval("window.location.reload()")
 
 func fade_out():
 	$AnimationPlayer.play("fade_out")

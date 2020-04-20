@@ -1,9 +1,83 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Fonts/HWYGOTH.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://Src/UIComponents/BlackScreen.gd" type="Script" id=2]
 [ext_resource path="res://Textures/demon_face.png" type="Texture" id=3]
 [ext_resource path="res://Textures/demon_mouth_2.png" type="Texture" id=4]
+[ext_resource path="res://Textures/demon_mouth_1.png" type="Texture" id=5]
+[ext_resource path="res://Textures/demon_mouth_5.png" type="Texture" id=6]
+[ext_resource path="res://Textures/demon_mouth_4.png" type="Texture" id=7]
+[ext_resource path="res://Textures/demon_mouth_3.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=7]
+resource_name = "mouth"
+length = 2.0
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("demon_face/demon_mouth_2:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "zoom"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("demon_face:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 13.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 556.104, 438.226 ), Vector2( 557.396, 308.99 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("demon_face:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 30 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.135018, 0.135018 ), Vector2( 0.494006, 0.494006 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("demon_face:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("demon_face:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -192,7 +266,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="GAMEOVER" type="Node2D" parent="Background"]
+position = Vector2( -37.9992, 0 )
+
+[node name="demon_face" type="Sprite" parent="Background/GAMEOVER"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 556.104, 438.226 )
+scale = Vector2( 0.135018, 0.135018 )
+texture = ExtResource( 3 )
+
+[node name="demon_mouth_2" type="Sprite" parent="Background/GAMEOVER/demon_face"]
+position = Vector2( -21.3977, 430.293 )
+scale = Vector2( 0.87062, 0.87062 )
+texture = ExtResource( 4 )
+
+[node name="MouthAnimator" type="AnimationPlayer" parent="Background/GAMEOVER"]
+anims/mouth = SubResource( 7 )
+
+[node name="DemonAnimator" type="AnimationPlayer" parent="Background/GAMEOVER"]
+anims/zoom = SubResource( 8 )
+
 [node name="TextBox" type="RichTextLabel" parent="Background"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -215,17 +311,3 @@ anims/fade-in-text = SubResource( 3 )
 anims/fade-out = SubResource( 4 )
 anims/fade-out-text = SubResource( 5 )
 anims/fade-switch-text = SubResource( 6 )
-
-[node name="GAMEOVER" type="Node2D" parent="."]
-visible = false
-position = Vector2( -14.7369, 0 )
-
-[node name="demon_face" type="Sprite" parent="GAMEOVER"]
-position = Vector2( 534.053, 355.515 )
-scale = Vector2( 0.199258, 0.199258 )
-texture = ExtResource( 3 )
-
-[node name="demon_mouth_2" type="Sprite" parent="GAMEOVER/demon_face"]
-position = Vector2( -21.3977, 430.293 )
-scale = Vector2( 0.87062, 0.87062 )
-texture = ExtResource( 4 )

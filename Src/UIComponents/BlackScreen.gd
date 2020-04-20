@@ -43,7 +43,9 @@ func fade_in_screen(entity_name, character_names = []):
 	handle_background_visibility(true)
 
 func fade_in_gameover(entity_name, character_names = []):
-	$GAMEOVER.visible = true
+	$Background/GAMEOVER.visible = true
+	$Background/GAMEOVER/MouthAnimator.play("mouth")
+	$Background/GAMEOVER/DemonAnimator.play("zoom")
 	fade_in_screen(entity_name, character_names)
 
 func _process(delta):
@@ -91,4 +93,4 @@ func display_text_entity():
 	$Background/TextBox.bbcode_text = "[center]" + text_to_set + "[/center]"
 
 func reset():
-	$GAMEOVER.visible = false
+	$Background/GAMEOVER.visible = false

@@ -1,6 +1,6 @@
 {
     "_COMMENT_": "Stores all text. Format: text;time|next_text;next_time",
-    "INTRO": "A game by:;2.0|Donovan Jonk;2.0|Hairic Lilred;2.0|NovemberDev;2.0|Raindrinker;2.0|Robert Hunter;2.0|and;1.0|Sebastian Scaini;2.0",
+    "INTRO": "A game by:;2.5|Donovan Jonk;2.5|Hairic Lilred;2.5|NovemberDev;2.5|Raindrinker;2.5|Robert Hunter;2.5|and;2.0|Sebastian Scaini;2.5",
 	
 	"WOOD1": "{0} goes out into the woods in search of firewood.;3.0|They walk and walk and walk and walk and walk and walk and walk and walk…;3.0",
 	"WOOD2": "{0} leaves the camp to look for firewood.;3.0|The pale moonlight glistens on the leaves of the forest trees.;3.0|They travel through the forest until the discover a clearing.;3.0|In the center of the clearing…;3.0",

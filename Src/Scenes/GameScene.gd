@@ -6,7 +6,6 @@ var round_counter = 1
 var round_start_timeout = 0.0
 var sacrificed_character_names = []
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	for c in $Characters.get_children():
 		c.get_child(0).connect("is_being_dragged", self, "set_all_character_draggable")
@@ -71,7 +70,8 @@ func reset_characters():
 func update_character_count(count):
 	character_count += count
 	
-	GLOBALS.emit_signal("game_over")
+	if character_count < 1:
+		GLOBALS.emit_signal("on_game_over")
 
 func on_round_end():
 	GLOBALS.emit_signal("update_fire", -1)

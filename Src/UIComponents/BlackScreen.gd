@@ -55,6 +55,7 @@ func fade_in_gameover(entity_name, character_names = []):
 	$Background/GAMEOVER/MouthAnimator.play("mouth")
 	$Background/GAMEOVER/DemonAnimator.play("zoom")
 	fade_in_screen(entity_name, character_names)
+	$Background/PORTRAIT.visible = false
 
 func _process(delta):
 	# Hides or switches current text after the seconds 

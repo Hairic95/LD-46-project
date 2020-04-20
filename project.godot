@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="The Flame"
+config/name="Ld- 46- Project"
 run/main_scene="res://Src/Scenes/INTRO.tscn"
 config/icon="res://icon.png"
 

@@ -54,7 +54,7 @@ func on_character_on_forest(character):
 	for c in $Characters.get_children():
 		c.get_child(0).can_be_dragged = false
 	
-	BlackScreen.fade_in_screen("WOOD" + str(randi()%10+1), [character.character_name])
+	BlackScreen.fade_in_screen("WOOD" + str(randi()%13+1), [character.character_name])
 	print(character.character_name + " on forest")
 	current_drag_character = character
 	

@@ -6,6 +6,9 @@ var round_counter = 1
 var round_start_timeout = 0.0
 var sacrificed_character_names = []
 
+var current_1log_probability = 500
+var current_2log_probability = 100
+
 func _ready():
 	for c in $Characters.get_children():
 		c.get_child(0).connect("is_being_dragged", self, "set_all_character_draggable")
@@ -39,10 +42,10 @@ func on_character_on_fire(character):
 	current_drag_character = character
 	current_drag_character.sacrifice()
 	GLOBALS.NOTIFICATIONS.notify("You sacrificed " + str(current_drag_character.character_name))
-	$Campfire.update_fire(4)
-	update_character_count(-1)
+	$Campfire.do_update_fire(3)
 	sacrificed_character_names.push_back(current_drag_character.character_name)
 	GLOBALS.emit_signal("on_sacrifice", current_drag_character)
+	update_character_count(-1)
 	#GLOBALS.emit_signal("on_round_end")
 
 func on_character_on_forest(character):
@@ -59,7 +62,17 @@ func on_before_background_invisible():
 	if "WOOD" in BlackScreen.current_entity_name:
 		print("reset after forest")
 		
-		var random_wood_index = (randi()%3+1)
+		var chance = randi()% 1000 + 1
+		
+		var random_wood_index = 1
+		if chance < current_2log_probability:
+			random_wood_index = 3
+		elif chance < current_1log_probability + current_2log_probability:
+			random_wood_index = 2
+		
+		current_1log_probability *= 0.85
+		current_2log_probability *= 0.85
+		
 		print(random_wood_index)
 		GLOBALS.emit_signal("on_collect_wood", current_drag_character, random_wood_index - 1)
 		

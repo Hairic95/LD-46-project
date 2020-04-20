@@ -40,6 +40,13 @@ func fade_in_screen(entity_name, character_names = []):
 	
 	set_text_entity(entity_name)
 	current_character_names = character_names;
+	
+	if character_names.size() == 1:
+		$Background/PORTRAIT.visible = true
+		$Background/PORTRAIT/SLOT_0.texture = load("res://Textures/char_pfp_" + character_names[0].to_lower() + ".png")
+	else:
+		$Background/PORTRAIT.visible = false
+	
 	handle_background_visibility(true)
 
 func fade_in_gameover(entity_name, character_names = []):

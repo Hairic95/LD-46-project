@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Fonts/HWYGOTH.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://Src/UIComponents/BlackScreen.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Textures/demon_mouth_5.png" type="Texture" id=6]
 [ext_resource path="res://Textures/demon_mouth_4.png" type="Texture" id=7]
 [ext_resource path="res://Textures/demon_mouth_3.png" type="Texture" id=8]
+[ext_resource path="res://Textures/char_pfp_tatiana.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "mouth"
@@ -298,6 +299,34 @@ mouse_filter = 2
 custom_fonts/normal_font = SubResource( 3 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PORTRAIT" type="Control" parent="Background"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SLOT_0" type="TextureRect" parent="Background/PORTRAIT"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -250.0
+margin_right = 100.0
+margin_bottom = -50.0
+rect_min_size = Vector2( 200, 200 )
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }

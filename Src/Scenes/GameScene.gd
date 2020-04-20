@@ -27,9 +27,9 @@ func _process(delta):
 
 func is_sacrifice_music_playing(is_playing):
 	if is_playing:
-		$Music.stop()
+		$Music.volume_db = -100
 	else:
-		$Music.play()
+		$Music.volume_db = 0
 
 func set_all_character_draggable(excluded_char, is_being_dragged):
 	for c in $Characters.get_children():

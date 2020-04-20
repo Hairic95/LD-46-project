@@ -11,5 +11,5 @@ dest_files=[ "res://.import/match_strike.ogg-ceab21db4fa2db1fa214a44a0510df8c.og
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

@@ -18,6 +18,7 @@ func update_fire(new_hp):
 		$AudioStreamPlayer.play()
 	
 	$AnimationPlayer.play("fire_hp")
+	$FlareUp.play()
 	
 	if fire_hp <= 0.0:
 		# TODO: extinguish effect

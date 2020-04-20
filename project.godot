@@ -15,9 +15,12 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Ld- 46- Project"
+config/name="The Flame"
 run/main_scene="res://Src/Scenes/INTRO.tscn"
+boot_splash/image="res://Textures/static_bg.png"
+boot_splash/bg_color=Color( 0.121569, 0, 0.964706, 1 )
 config/icon="res://icon.png"
+config/windows_native_icon="res://Icon.ico"
 
 [autoload]
 

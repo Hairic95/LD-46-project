@@ -54,6 +54,10 @@ func _physics_process(delta):
 				emit_signal("is_being_dragged", self, false)
 	if is_dead and death_sound_played:
 		get_parent().queue_free()
+	if !is_on_fire:
+		$SacrificeMusic.volume_db = lerp($SacrificeMusic.volume_db, -100, 0.1 * delta)
+	if is_on_fire:
+		$SacrificeMusic.volume_db = lerp($SacrificeMusic.volume_db, 0, 6.0 * delta)
 
 func _input(ev):
 	if !GLOBALS.can_control: return
@@ -88,7 +92,6 @@ func _on_MouseArea_mouse_exited():
 
 func _on_CheckArea_area_entered(area):
 	if area.is_in_group("Campfire"):
-		$SacrificeMusic.volume_db = 0.0
 		GLOBALS.emit_signal("on_sacrifice_music", true)
 		is_on_fire = true
 	if area.is_in_group("Forest"):
@@ -96,7 +99,6 @@ func _on_CheckArea_area_entered(area):
 
 func _on_CheckArea_area_exited(area):
 	if area.is_in_group("Campfire"):
-		$SacrificeMusic.volume_db = -100
 		GLOBALS.emit_signal("on_sacrifice_music", false)
 		is_on_fire = false
 	if area.is_in_group("Forest"):

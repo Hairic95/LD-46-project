@@ -15,7 +15,7 @@ func _ready():
 		c.get_child(0).connect("is_put_on_fire", self, "on_character_on_fire")
 		c.get_child(0).connect("is_sent_on_forest", self, "on_character_on_forest")
 	BlackScreen.connect("before_background_invisible", self, "on_before_background_invisible")
-	GLOBALS.connect("on_sacrifice_music", self, "is_sacrifice_music_playing")
+#	GLOBALS.connect("on_sacrifice_music", self, "is_sacrifice_music_playing")
 	GLOBALS.connect("on_round_end", self, "on_round_end")
 	GLOBALS.connect("on_game_over", self, "on_game_over")
 
@@ -25,12 +25,12 @@ func _process(delta):
 	else:
 		if !BlackScreen.is_blocking:
 			GLOBALS.can_control = true
-
-func is_sacrifice_music_playing(is_playing):
-	if is_playing:
-		$Music.volume_db = -100
-	else:
-		$Music.volume_db = 0
+#
+#func is_sacrifice_music_playing(is_playing):
+#	if is_playing:
+#		$Music.volume_db = -100
+#	else:
+#		$Music.volume_db = 0
 
 func set_all_character_draggable(excluded_char, is_being_dragged):
 	for c in $Characters.get_children():

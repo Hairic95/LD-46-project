@@ -42,12 +42,17 @@ func _process(delta):
 		#play_mumble()
 		#next_mumble_timeout = rand_range(MUMBLE_LOWER_CAP, MUBMLE_UPPER_CAP)
 		pass
-	
+
+var target_drag_point = position
+
+func set_drag_point(pos):
+	target_drag_point = pos
+
 func _physics_process(delta):
 	if can_be_dragged:
 		if is_being_dragged and global_position != get_global_mouse_position():
-			if get_tree().get_root().get_visible_rect().has_point(get_global_mouse_position()):
-				global_position = lerp(global_position, get_global_mouse_position(), 15.0 * delta)
+			if get_tree().get_root().get_visible_rect().has_point(target_drag_point):
+				global_position = lerp(global_position, target_drag_point, 15.0 * delta)
 			else:
 				return_to_start_pos()
 				is_being_dragged = false
@@ -59,30 +64,28 @@ func _physics_process(delta):
 	if is_on_fire:
 		$SacrificeMusic.volume_db = lerp($SacrificeMusic.volume_db, 0, 6.0 * delta)
 
-func _input(ev):
+func touched(value):
 	if !GLOBALS.can_control: return
 	
 	if is_dead: return
-	
-	if ev is InputEventMouseButton:
-		if can_be_dragged:
-			if is_mouse_over and ev.button_index == BUTTON_LEFT:
-				if ev.pressed:
-					play_mumble()
-					$Tween.stop(self)
-					is_being_dragged = true
-					emit_signal("is_being_dragged", self, true)
-					$AnimationPlayer.play("on_start_drag")
-					set_sprite(true)
-			if !ev.pressed and ev.button_index == BUTTON_LEFT:
-				is_being_dragged = false
-				if is_on_fire:
-					emit_signal("is_put_on_fire", self)
-				if is_on_forest:
-					emit_signal("is_sent_on_forest", self)
-				if !is_on_fire and !is_on_forest:
-					return_to_start_pos()
-				emit_signal("is_being_dragged", self, false)
+	if value:
+		play_mumble()
+		$Tween.stop(self)
+		is_being_dragged = true
+		emit_signal("is_being_dragged", self, true)
+		$AnimationPlayer.play("on_start_drag")
+		set_sprite(true)
+	else:
+		is_being_dragged = false
+		if is_on_fire:
+			emit_signal("is_put_on_fire", self)
+		if is_on_forest:
+			emit_signal("is_sent_on_forest", self)
+		if !is_on_fire and !is_on_forest:
+			return_to_start_pos()
+		emit_signal("is_being_dragged", self, false)
+		target_drag_point = Vector2.ZERO
+
 
 func _on_MouseArea_mouse_entered():
 	is_mouse_over = true

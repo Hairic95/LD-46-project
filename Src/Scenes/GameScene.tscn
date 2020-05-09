@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://SoundEffects/tree_falling.ogg" type="AudioStream" id=1]
 [ext_resource path="res://Src/Entities/Campfire.tscn" type="PackedScene" id=2]
@@ -18,7 +18,6 @@
 [ext_resource path="res://SoundEffects/night_ambiance_loop.ogg" type="AudioStream" id=16]
 [ext_resource path="res://Textures/log_2.png" type="Texture" id=17]
 [ext_resource path="res://Textures/log_3.png" type="Texture" id=18]
-[ext_resource path="res://Textures/log_1.png" type="Texture" id=19]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -162,7 +161,7 @@ func update_wood_display():
 "
 
 [sub_resource type="GDScript" id=8]
-script/source = "extends Sprite
+script/source = "extends TouchScreenButton
 
 var is_on_fire = false
 var is_mouse_over = false
@@ -194,8 +193,8 @@ func _physics_process(delta):
 
 func _input(ev):
 	if !GLOBALS.can_control: return
-	if ev is InputEventMouseButton:
-		if is_mouse_over and ev.button_index == BUTTON_LEFT:
+	if ev is InputEventScreenDrag:
+		if is_mouse_over:
 			if ev.pressed:
 				is_being_dragged = true
 				$Tween.stop_all()
@@ -211,6 +210,23 @@ func _input(ev):
 func return_to_start_pos():
 	$Tween.interpolate_property(self, \"position\", get_position(), Vector2(-4.453, 15.697), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
+
+
+func _on_drag_sprite_pressed():
+	if !GLOBALS.can_control: return
+	is_being_dragged = true
+	is_mouse_over = true
+	$Tween.stop_all()
+
+
+func _on_drag_sprite_released():
+	is_being_dragged = false
+	if is_on_fire:
+		GLOBALS.emit_signal(\"update_fire\", 2)
+		GLOBALS.emit_signal(\"on_dispense_wood\", 1)
+		GLOBALS.NOTIFICATIONS.notify(\"You throw wood into the fire\")
+		#GLOBALS.emit_signal(\"on_round_end\")
+		position = Vector2(-4.453, 15.697)
 "
 
 [sub_resource type="CircleShape2D" id=9]
@@ -278,8 +294,13 @@ func notify(text):
 	notifications.push_back(text)
 "
 
-[node name="GameScene" type="Node2D"]
+[node name="GameScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -437,11 +458,10 @@ texture = ExtResource( 18 )
 
 [node name="Tween" type="Tween" parent="WOOD"]
 
-[node name="drag_sprite" type="Sprite" parent="WOOD"]
+[node name="drag_sprite" type="TouchScreenButton" parent="WOOD"]
 position = Vector2( -4.45313, 15.6968 )
 rotation = 0.0689044
 scale = Vector2( 0.3, 0.2 )
-texture = ExtResource( 19 )
 script = SubResource( 8 )
 
 [node name="Tween" type="Tween" parent="WOOD/drag_sprite"]
@@ -477,10 +497,9 @@ autoplay = true
 
 [node name="EVENT" type="Label" parent="."]
 visible = false
-margin_left = -3.0
-margin_top = 79.0
-margin_right = 1029.0
-margin_bottom = 136.0
+anchor_right = 1.0
+margin_top = 88.0
+margin_bottom = 145.0
 custom_fonts/font = SubResource( 12 )
 text = "EVENT"
 align = 1
@@ -493,3 +512,5 @@ __meta__ = {
 [node name="Forest" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 volume_db = 2.0
+[connection signal="pressed" from="WOOD/drag_sprite" to="WOOD/drag_sprite" method="_on_drag_sprite_pressed"]
+[connection signal="released" from="WOOD/drag_sprite" to="WOOD/drag_sprite" method="_on_drag_sprite_released"]

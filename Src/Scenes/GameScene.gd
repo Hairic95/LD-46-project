@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var current_drag_character
 var character_count = 4
